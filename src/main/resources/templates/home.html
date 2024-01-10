@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+  th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container my-5 p-5">
+    <h2>Inventory Management</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <form action="#" method="post" th:action="@{'/add/'+ ${item.id}}">
+                    <input type="submit" class="btn btn-primary" value="Add to Cart">
+                </form>
+            </td>
+            <td>
+                <form action="#" method="post" th:action="@{'/delete/'+ ${item.id}}">
+                    <input type="submit" class="btn btn-outline-danger" value="Delete">
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr class="my-5">
+
+    <section>
+        <h2>Cart</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartItem :${cart.cartItems}">
+                <td th:text="${cartItem.item.id}"></td>
+                <td th:text="${cartItem.item.name}"></td>
+                <td th:text="${cartItem.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
